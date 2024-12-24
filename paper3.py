@@ -5,12 +5,28 @@ import matplotlib.pyplot as plt
 # 设置全局字体
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 选择支持中文的字体
 plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
-file_path = r'D:\教学工作\课程\python数据处理课程\2024\上机相关\chengji.xlsx'
+file_path = r'./chengji.xlsx'
 # 读取 Excel 文件中的四个班级数据
-df1 = pd.read_excel(file_path, sheet_name='1', index_col=0)
-df2 = pd.read_excel(file_path, sheet_name='2', index_col=0)
-df3 = pd.read_excel(file_path, sheet_name='3', index_col=0)
-df4 = pd.read_excel(file_path, sheet_name='4', index_col=0)
+df1 = pd.read_excel(file_path, sheet_name='1')
+df2 = pd.read_excel(file_path, sheet_name='2')
+df3 = pd.read_excel(file_path, sheet_name='3')
+df4 = pd.read_excel(file_path, sheet_name='4')
+
+# 打印列名以检查
+print("df1 columns:", df1.columns)
+print("df2 columns:", df2.columns)
+print("df3 columns:", df3.columns)
+print("df4 columns:", df4.columns)
+
+# 假设实际的列名是 'Name'，需要重命名为 '姓名'
+if 'Name' in df1.columns:
+    df1.rename(columns={'Name': '姓名'}, inplace=True)
+if 'Name' in df2.columns:
+    df2.rename(columns={'Name': '姓名'}, inplace=True)
+if 'Name' in df3.columns:
+    df3.rename(columns={'Name': '姓名'}, inplace=True)
+if 'Name' in df4.columns:
+    df4.rename(columns={'Name': '姓名'}, inplace=True)
 
 # 添加班级前缀到姓名列
 df1['姓名'] = ['1-' + col for col in df1['姓名']]
@@ -66,7 +82,7 @@ def tongji2(dataframe):
     min_index = dataframe['考试总'].idxmin()
     mean_value = dataframe['考试总'].mean()
     std_value = dataframe['考试总'].std()
-    print(f'全班最高分: {dataframe.loc[max_index, '姓名']},最低分：{dataframe.loc[min_index, '姓名']},平均分：{mean_value},标准差{std_value}')
+    print(f'全班最高分: {dataframe.loc[max_index]},最低分：{dataframe.loc[min_index]},平均分：{mean_value},标准差{std_value}')
 
 tongji2(df1)
 tongji2(df2)
@@ -93,8 +109,6 @@ for i, (class_name, counts) in enumerate(data.items()):
                 autopct='%1.1f%%', startangle=140, pctdistance=0.85)
     axs1[i].set_title(class_name)
     axs1[i].text(0, -1.2, f'{class_name} 成绩分布', ha='center', va='center', fontsize=12, color='black')
-
-
 
 # 调整饼图布局并显示
 plt.tight_layout()
@@ -130,16 +144,6 @@ axs2.set_xticks(x + 2 * bar_width)  # 设置x轴刻度
 axs2.set_xticklabels(labels)  # 设置x轴标签
 axs2.legend()  # 显示图例
 
-
 # 调整直方图布局并显示
 plt.tight_layout()
 plt.show()
-
-
-
-
-
-
-
-
-

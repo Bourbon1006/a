@@ -148,17 +148,126 @@ print(a)
 ### np.random.shuffle()
 
 ```python
-np.random.shuffle(a)
-print(a)
+b = np.random.shuffle(a)
+print(b)
 #[3,1,5,7,9]  随机打乱数组
 ```
+### np.flip()
 
+```python
+b = np.flip(a)
+print(b) 
+#反转，亦可以使用[::-1]实现
+```
+### np.random.rand
 
+```python
+b = np.random.rand(3,3,3) # 3*3*3的随机数组，小于1
+b = np.random.randint(1,10,(3,3,3)) # 3*3*3的随机数组，1到10的
+```
+
+### np.eye()
+
+```python
+b = np.eye(3) # 3*3的单位向量
+#[[1 0 0]
+# [0 1 0]
+# [0 0 1]]
+```
+
+### np.sort()
+
+```python
+import numpy as np
+
+a = np.random.rand(10)
+
+print(np.sort(a))
+# 随机数组从大到小排序
+
+a = np.random.rand(3,3,3)
+
+print(np.sort(a.flatten()))  # 拆分成一维数组排序
+print(np.sort(a,axis=0)) # 按列排序
+print(np.sort(a,axis=1)) # 按行排序
+```
+
+## pandas
+
+初始化用例
+import pandas as pd
+
+a = pd.Series([1,2,3,4,5,6,7,8,9,10])
+b = pd.DataFrame({'name':['xiaoming','xiaohong','xiaoli'],'age':[18,19,20]})
+
+### tocsv()
+    
+```python
+b.to_csv('test.csv')
+#导出csv文件
+```
+
+### read_csv()
+
+```python
+c = pd.read_csv('test.csv')
+#读取csv文件
+```
+
+### df.drop_duplicates()
+
+```python
+b.drop_duplicates()
+#去除重复的name
+```
+
+## matplotlib()
+
+### 折线图
+
+```python
+plt.plot(x, y, marker='o')
+plt.show()
+```
+
+### 柱状图
+
+```python
+plt.bar(x, y)
+plt.show()
+```
+### 直方图
+
+```python
+plt.hist(x, bins=5)
+plt.show()
+```
+
+## 爬虫
+
+### urllib
+import urllib.request
+
+```python
+url = 'http://www.baidu.com'
+response = urllib.request.urlopen(url)
+status = response.getcode()
+print(status)
+```
++ 200：请求成功。
++ 404：请求的资源未找到。
++ 500：服务器内部错误。
+
+## 文本处理
+
+### jieba
+
+### nblk
 
 ## 题型
 
-### 选择 
+### 选择  30 
 
-### 填空（代码分析） 
+### 填空（代码分析）  20 20 
 
-### 程序编程题
+### 程序编程题 30
